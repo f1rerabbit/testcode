@@ -17,6 +17,8 @@ jobs:
           script: |
             set -e
             cd /opt/testcode
-            git pull
+            git fetch origin
+            git reset --hard origin/main
+            git clean -fd
             docker compose up -d --build
             docker compose ps
