@@ -1,16 +1,7 @@
 from fastapi import FastAPI
 
-app = FastAPI(title="My SaaS API")
+from app.api.router import api_router
+from app.core.config import settings
 
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-
-
-@app.get("/version")
-def version():
-    return {
-        "service": "my-saas-api",
-        "version": "0.1.0",
-    }
+app = FastAPI(title=settings.app_name)
+app.include_router(api_router)
